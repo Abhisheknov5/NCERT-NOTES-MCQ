@@ -1,173 +1,274 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Class 6 Physics | NCERT Notes + MCQ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Physics | NCERT Notes + MCQ</title>
 
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #1f2937;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 25px 20px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+}
 
-        .back-btn {
-            display: inline-block;
-            padding: 10px 18px;
-            background: #374151;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 20px;
+}
 
-        .header {
-            text-align: center;
-            background: #2563eb;
-            color: white;
-            padding: 40px 20px;
-            border-radius: 18px;
-            margin-bottom: 35px;
-        }
+/* Back Button */
 
-        .header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #374151;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
 
-        .header p {
-            margin-top: 12px;
-        }
+.back-btn:hover {
+    background: #1f2937;
+}
 
-        .chapters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+/* Header */
 
-        .chapter-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+.header {
+    text-align: center;
+    background: #2563eb;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 18px;
+    margin-bottom: 35px;
+}
 
-        .chapter-card h3 {
-            margin-top: 0;
-            font-size: 20px;
-        }
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+}
 
-        .chapter-card p {
-            color: #6b7280;
-        }
+.header p {
+    margin-top: 12px;
+    font-size: 17px;
+}
 
-        .chapter-card a {
-            display: inline-block;
-            margin-top: 15px;
-            margin-right: 8px;
-            padding: 10px 18px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
+/* Section Title */
 
-        .chapter-card a:hover {
-            background: #1d4ed8;
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #6b7280;
-        }
+.section-title h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
 
-    </style>
+.section-title p {
+    color: #6b7280;
+}
+
+/* Class Grid */
+
+.classes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Class Card */
+
+.class-card {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.class-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.class-icon {
+    font-size: 42px;
+}
+
+.class-card h3 {
+    font-size: 23px;
+    margin: 15px 0;
+}
+
+.class-card p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Button */
+
+.class-card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 11px 22px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.class-card a:hover {
+    background: #1d4ed8;
+}
+
+/* Footer */
+
+.footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <a href="../index.html" class="back-btn">
-        ← Back to Physics
-    </a>
+<a href="../index.html" class="back-btn">
+← Back to General Science
+</a>
 
-    <div class="header">
-        <h1>⚛️ Class 6 Physics</h1>
-        <p>NCERT Notes and MCQ Practice</p>
-    </div>
+<div class="header">
 
-    <div class="chapters">
+<h1>⚛️ Physics</h1>
 
-        <!-- Chapter 1 -->
+<p>NCERT Physics Notes and MCQ Practice</p>
 
-        <div class="chapter-card">
+</div>
 
-            <h3>Chapter 1</h3>
+<div class="section-title">
 
-            <p>गति एवं दूरियों का मापन</p>
+<h2>📚 Choose Your Class</h2>
 
-            <a href="1/notes.html">📖 Notes</a>
+<p>Select a class to view Physics chapters, Notes and MCQs.</p>
 
-            <a href="1/mcq.html">📝 MCQ</a>
+</div>
 
-        </div>
+<div class="classes">
 
+<!-- Class 6 -->
 
-        <!-- Chapter 2 -->
+<div class="class-card">
+    <div class="class-icon">📘</div>
+    <h3>Class 6</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
 
-        <div class="chapter-card">
-
-            <h3>Chapter 2</h3>
-
-            <p>Notes and MCQ Practice</p>
-
-            <a href="#">Open Chapter</a>
-
-        </div>
+    <a href="Class-6/index.html">Explore</a>
+</div>
 
 
-        <!-- Chapter 3 -->
+<!-- Class 7 -->
 
-        <div class="chapter-card">
-
-            <h3>Chapter 3</h3>
-
-            <p>Notes and MCQ Practice</p>
-
-            <a href="#">Open Chapter</a>
-
-        </div>
-
-    </div>
+<div class="class-card">
+    <div class="class-icon">📗</div>
+    <h3>Class 7</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
 
 
-    <div class="footer">
+<!-- Class 8 -->
 
-        © NCERT Notes + MCQ
+<div class="class-card">
+    <div class="class-icon">📙</div>
+    <h3>Class 8</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
 
-    </div>
+
+<!-- Class 9 -->
+
+<div class="class-card">
+    <div class="class-icon">📕</div>
+    <h3>Class 9</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
+
+
+<!-- Class 10 -->
+
+<div class="class-card">
+    <div class="class-icon">📘</div>
+    <h3>Class 10</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
+
+
+<!-- Class 11 -->
+
+<div class="class-card">
+    <div class="class-icon">📗</div>
+    <h3>Class 11</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
+
+
+<!-- Class 12 -->
+
+<div class="class-card">
+    <div class="class-icon">📙</div>
+    <h3>Class 12</h3>
+    <p>Physics Chapters, Notes and MCQs</p>
+    <a href="#">Explore</a>
+</div>
+
+</div>
+
+
+<div class="footer">
+
+© NCERT Notes + MCQ | Created by Abhishek
+
+</div>
 
 </div>
 
 </body>
-
 </html>
