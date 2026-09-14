@@ -1,1 +1,1098 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>गति एवं दूरियों का मापन | MCQ</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #374151;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.header {
+    background: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin-top: 10px;
+}
+
+.quiz-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.progress {
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    margin: 12px 0;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.option:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+}
+
+.option.selected {
+    background: #dbeafe;
+    border-color: #2563eb;
+}
+
+.option.correct {
+    background: #dcfce7;
+    border-color: #16a34a;
+}
+
+.option.wrong {
+    background: #fee2e2;
+    border-color: #dc2626;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+}
+
+.result {
+    text-align: center;
+    padding: 30px;
+}
+
+.score {
+    font-size: 30px;
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 35px;
+    color: #6b7280;
+}
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    .quiz-box {
+        padding: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<a href="../index.html" class="back-btn">
+
+← वापस जाएँ
+
+</a>
+
+
+<div class="header">
+
+<h1>📝 गति एवं दूरियों का मापन</h1>
+
+<p>MCQ Practice • कुल 100 प्रश्न</p>
+
+</div>
+
+
+<div class="quiz-box" id="quizBox">
+
+<div class="progress" id="progress"></div>
+
+<div class="question" id="question"></div>
+
+<div id="options"></div>
+
+<div class="buttons">
+
+<button class="btn" onclick="previousQuestion()">
+
+← Previous
+
+</button>
+
+<button class="btn" onclick="nextQuestion()">
+
+Next →
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+© NCERT Notes + MCQ | Created by Abhishek
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================
+MCQ QUESTIONS
+========================= */
+
+const questions = [
+
+{
+question: "प्राचीन काल में लोग एक स्थान से दूसरे स्थान तक कैसे जाते थे?",
+
+options: [
+"रेलगाड़ी से",
+"पैदल",
+"मोटरकार से",
+"वायुयान से"
+],
+
+answer: 1
+},
+
+{
+question: "प्राचीन समय में लोग अपना सामान कैसे ले जाते थे?",
+
+options: [
+"ट्रक से",
+"स्वयं उठाकर",
+"रेल से",
+"बस से"
+],
+
+answer: 1
+},
+
+{
+question: "बाद में मानव ने परिवहन के लिए किसका उपयोग शुरू किया?",
+
+options: [
+"रोबोट",
+"पशुओं",
+"कंप्यूटर",
+"बिजली"
+],
+
+answer: 1
+},
+
+{
+question: "प्राचीन समय में जल मार्गों में आने-जाने के लिए किसका उपयोग किया जाता था?",
+
+options: [
+"रेलगाड़ी",
+"मोटरकार",
+"नाव",
+"बस"
+],
+
+answer: 2
+},
+
+{
+question: "आरंभ में नावें किससे बनाई जाती थीं?",
+
+options: [
+"लोहे से",
+"लकड़ी के लट्ठों से",
+"प्लास्टिक से",
+"स्टील से"
+],
+
+answer: 1
+},
+
+{
+question: "परिवहन की प्रणाली में महत्वपूर्ण परिवर्तन किसके आविष्कार से आया?",
+
+options: [
+"बल्ब",
+"पहिए",
+"टेलीफोन",
+"कंप्यूटर"
+],
+
+answer: 1
+},
+
+{
+question: "नए परिवहन साधनों के विकास में किस आविष्कार का महत्वपूर्ण योगदान था?",
+
+options: [
+"टेलीविजन",
+"भाप-इंजन",
+"रेडियो",
+"कंप्यूटर"
+],
+
+answer: 1
+},
+
+{
+question: "मापन का मुख्य उद्देश्य क्या है?",
+
+options: [
+"अनुमान लगाना",
+"अज्ञात राशि की ज्ञात राशि से तुलना करना",
+"केवल वस्तु देखना",
+"वस्तु बनाना"
+],
+
+answer: 1
+},
+
+{
+question: "किसी वस्तु की लंबाई या चौड़ाई जानने के लिए क्या किया जाता है?",
+
+options: [
+"गति",
+"मापन",
+"परिवहन",
+"यात्रा"
+],
+
+answer: 1
+},
+
+{
+question: "मापन का परिणाम किन दो भागों में व्यक्त किया जाता है?",
+
+options: [
+"रंग और आकार",
+"संख्या और माप की इकाई",
+"समय और गति",
+"दूरी और रंग"
+],
+
+answer: 1
+},
+
+{
+question: "मात्रक (Unit) किसे कहते हैं?",
+
+options: [
+"अज्ञात राशि",
+"ज्ञात निश्चित राशि, जिससे अज्ञात राशि की तुलना की जाती है",
+"केवल संख्या",
+"केवल दूरी"
+],
+
+answer: 1
+},
+
+{
+question: "प्राचीन समय में मापन के लिए किसका उपयोग किया जाता था?",
+
+options: [
+"शरीर के अंगों का",
+"कंप्यूटर का",
+"इंटरनेट का",
+"उपग्रह का"
+],
+
+answer: 0
+},
+
+{
+question: "निम्नलिखित में से कौन अमानक मात्रक है?",
+
+options: [
+"मीटर",
+"सेंटीमीटर",
+"बित्ता",
+"किलोमीटर"
+],
+
+answer: 2
+},
+
+{
+question: "अलग-अलग व्यक्तियों द्वारा माप अलग-अलग क्यों प्राप्त हो सकते हैं?",
+
+options: [
+"सभी के शरीर के अंगों का आकार अलग होता है",
+"सभी का रंग अलग होता है",
+"सभी एक ही स्थान पर रहते हैं",
+"सभी की आयु समान होती है"
+],
+
+answer: 0
+},
+
+{
+question: "मापन के लिए कैसी इकाइयों की आवश्यकता होती है?",
+
+options: [
+"अलग-अलग",
+"सभी व्यक्तियों के लिए समान",
+"केवल बड़ी",
+"केवल छोटी"
+],
+
+answer: 1
+},
+
+{
+question: "मापन की एक मानक प्रणाली की रचना कब की गई?",
+
+options: [
+"1790",
+"1890",
+"1990",
+"1700"
+],
+
+answer: 0
+},
+
+{
+question: "फ्रांस द्वारा बनाई गई मापन प्रणाली को क्या कहा गया?",
+
+options: [
+"SI पद्धति",
+"मीटरी पद्धति",
+"भारतीय पद्धति",
+"फुट पद्धति"
+],
+
+answer: 1
+},
+
+{
+question: "वर्तमान में प्रयुक्त मानक मापन प्रणाली क्या कहलाती है?",
+
+options: [
+"मीटरी पद्धति",
+"अंतर्राष्ट्रीय मात्रक प्रणाली",
+"फुट प्रणाली",
+"अमानक प्रणाली"
+],
+
+answer: 1
+},
+
+{
+question: "S.I. का पूरा नाम क्या है?",
+
+options: [
+"Standard India",
+"International System of Units",
+"Science Institute",
+"Standard Instrument"
+],
+
+answer: 1
+},
+
+{
+question: "S.I. मात्रकों में लंबाई का मानक मात्रक क्या है?",
+
+options: [
+"सेंटीमीटर",
+"मीटर",
+"किलोमीटर",
+"मिलीमीटर"
+],
+
+answer: 1
+},
+
+{
+question: "मीटर का प्रतीक क्या है?",
+
+options: [
+"cm",
+"km",
+"m",
+"mm"
+],
+
+answer: 2
+},
+
+{
+question: "1 मीटर में कितने सेंटीमीटर होते हैं?",
+
+options: [
+"10",
+"100",
+"1000",
+"50"
+],
+
+answer: 1
+},
+
+{
+question: "1 सेंटीमीटर में कितने मिलीमीटर होते हैं?",
+
+options: [
+"10",
+"100",
+"1000",
+"5"
+],
+
+answer: 0
+},
+
+{
+question: "1 किलोमीटर में कितने मीटर होते हैं?",
+
+options: [
+"10",
+"100",
+"1000",
+"10000"
+],
+
+answer: 2
+},
+
+{
+question: "मीटर से लंबी दूरी मापने के लिए किसका उपयोग किया जाता है?",
+
+options: [
+"मिलीमीटर",
+"सेंटीमीटर",
+"किलोमीटर",
+"अंगुल"
+],
+
+answer: 2
+},
+
+{
+question: "पेंसिल की लंबाई मापने के लिए कौन-सा मात्रक उपयुक्त है?",
+
+options: [
+"km",
+"cm",
+"m",
+"केवल km"
+],
+
+answer: 1
+},
+
+{
+question: "कमरे की लंबाई मापने के लिए कौन-सा मात्रक उपयुक्त है?",
+
+options: [
+"mm",
+"cm",
+"m",
+"km"
+],
+
+answer: 2
+},
+
+{
+question: "सड़क की दूरी मापने के लिए कौन-सा मात्रक उपयुक्त है?",
+
+options: [
+"cm",
+"mm",
+"km",
+"अंगुल"
+],
+
+answer: 2
+},
+
+{
+question: "वृक्ष का घेर मापने के लिए कौन-सी युक्ति सुविधाजनक है?",
+
+options: [
+"मापने वाला फीता",
+"छोटी स्केल",
+"घड़ी",
+"थर्मामीटर"
+],
+
+answer: 0
+},
+
+{
+question: "पैमाने को वस्तु के संबंध में कैसे रखना चाहिए?",
+
+options: [
+"तिरछा",
+"वस्तु की लंबाई के अनुदिश",
+"बहुत दूर",
+"हवा में"
+],
+
+answer: 1
+},
+
+{
+question: "यदि पैमाने का शून्यांक टूटा हो तो क्या किया जा सकता है?",
+
+options: [
+"मापन नहीं किया जा सकता",
+"किसी अन्य पूर्णांक से मापन शुरू किया जा सकता है",
+"केवल अनुमान लगाया जा सकता है",
+"वस्तु बदलनी चाहिए"
+],
+
+answer: 1
+},
+
+{
+question: "यदि प्रारंभिक पाठ्यांक 1.0 cm और अंतिम पाठ्यांक 14.3 cm हो, तो वस्तु की लंबाई कितनी होगी?",
+
+options: [
+"15.3 cm",
+"13.3 cm",
+"14.3 cm",
+"12.3 cm"
+],
+
+answer: 1
+},
+
+{
+question: "मापन करते समय आँख की सही स्थिति कैसी होनी चाहिए?",
+
+options: [
+"बहुत दूर",
+"माप वाले बिंदु के ठीक सामने",
+"पैमाने के पीछे",
+"तिरछी"
+],
+
+answer: 1
+},
+
+{
+question: "वक्र-रेखा की लंबाई सीधे मीटर पैमाने से मापी जा सकती है?",
+
+options: [
+"हाँ",
+"नहीं",
+"केवल कभी-कभी",
+"केवल रात में"
+],
+
+answer: 1
+},
+
+{
+question: "वक्र-रेखा की लंबाई मापने के लिए किसका उपयोग किया जाता है?",
+
+options: [
+"धागे का",
+"घड़ी का",
+"थर्मामीटर का",
+"कंप्यूटर का"
+],
+
+answer: 0
+},
+
+{
+question: "जो वस्तु समय के साथ अपनी स्थिति नहीं बदलती, वह क्या कहलाती है?",
+
+options: [
+"गतिशील",
+"विराम में",
+"आवर्ती",
+"वर्तुल"
+],
+
+answer: 1
+},
+
+{
+question: "जो वस्तु समय के साथ अपनी स्थिति बदलती है, वह क्या कहलाती है?",
+
+options: [
+"विराम में",
+"गतिशील",
+"स्थिर मात्रक",
+"अमानक मात्रक"
+],
+
+answer: 1
+},
+
+{
+question: "गति का पता किस आधार पर लगाया जाता है?",
+
+options: [
+"वस्तु के रंग से",
+"स्थिति में परिवर्तन से",
+"आकार से",
+"वजन से"
+],
+
+answer: 1
+},
+
+{
+question: "निम्नलिखित में से गतिशील वस्तु का उदाहरण कौन-सा है?",
+
+options: [
+"मेज",
+"घर",
+"उड़ती चिड़िया",
+"दीवार"
+],
+
+answer: 2
+},
+
+{
+question: "गति किसे कहते हैं?",
+
+options: [
+"वस्तु के रंग में परिवर्तन को",
+"समय के साथ स्थिति में परिवर्तन को",
+"वस्तु के आकार को",
+"केवल दूरी को"
+],
+
+answer: 1
+},
+
+{
+question: "सरल रेखा के अनुदिश होने वाली गति को क्या कहते हैं?",
+
+options: [
+"वर्तुल गति",
+"सरल रेखीय गति",
+"आवर्ती गति",
+"स्थिर गति"
+],
+
+answer: 1
+},
+
+{
+question: "सीधी सड़क पर चलने वाला वाहन किस गति का उदाहरण है?",
+
+options: [
+"सरल रेखीय गति",
+"वर्तुल गति",
+"आवर्ती गति",
+"विराम"
+],
+
+answer: 0
+},
+
+{
+question: "100 मीटर दौड़ में धावक किस प्रकार की गति करता है?",
+
+options: [
+"वर्तुल गति",
+"आवर्ती गति",
+"सरल रेखीय गति",
+"विराम"
+],
+
+answer: 2
+},
+
+{
+question: "गिरते हुए पत्थर की गति किसका उदाहरण है?",
+
+options: [
+"सरल रेखीय गति",
+"वर्तुल गति",
+"आवर्ती गति",
+"विराम"
+],
+
+answer: 0
+},
+
+{
+question: "वृत्तीय पथ पर होने वाली गति को क्या कहते हैं?",
+
+options: [
+"सरल रेखीय गति",
+"वर्तुल गति",
+"आवर्ती गति",
+"विराम"
+],
+
+answer: 1
+},
+
+{
+question: "निम्नलिखित में से वर्तुल गति का उदाहरण कौन-सा है?",
+
+options: [
+"विद्युत पंखे की पंखुड़ियाँ",
+"सीधी सड़क पर कार",
+"गिरता हुआ पत्थर",
+"खड़ी मेज"
+],
+
+answer: 0
+},
+
+{
+question: "घड़ी की सेकंड की सुई किस प्रकार की गति करती है?",
+
+options: [
+"वर्तुल गति",
+"सरल रेखीय गति",
+"विराम",
+"अनियमित गति"
+],
+
+answer: 0
+},
+
+{
+question: "निश्चित समय अंतराल के बाद दोहराने वाली गति क्या कहलाती है?",
+
+options: [
+"सरल रेखीय गति",
+"आवर्ती गति",
+"वर्तुल गति",
+"विराम"
+],
+
+answer: 1
+},
+
+{
+question: "लोलक की गति किस प्रकार की गति है?",
+
+options: [
+"सरल रेखीय गति",
+"आवर्ती गति",
+"विराम",
+"वर्तुल गति"
+],
+
+answer: 1
+},
+
+{
+question: "झूला झूलते बच्चे की गति किसका उदाहरण है?",
+
+options: [
+"आवर्ती गति",
+"विराम",
+"सरल रेखीय गति",
+"स्थिर गति"
+],
+
+answer: 0
+},
+
+{
+question: "सिलाई मशीन की सुई किस प्रकार की गति करती है?",
+
+options: [
+"आवर्ती गति",
+"वर्तुल गति",
+"विराम",
+"सरल रेखीय गति"
+],
+
+answer: 0
+},
+
+{
+question: "सिलाई मशीन का पहिया किस प्रकार की गति करता है?",
+
+options: [
+"वर्तुल गति",
+"आवर्ती गति",
+"विराम",
+"सरल रेखीय गति"
+],
+
+answer: 0
+},
+
+{
+question: "क्या एक ही वस्तु में विभिन्न प्रकार की गतियाँ एक साथ हो सकती हैं?",
+
+options: [
+"नहीं",
+"हाँ",
+"केवल मशीनों में",
+"केवल जानवरों में"
+],
+
+answer: 1
+},
+
+{
+question: "निम्नलिखित में से गति के प्रमुख प्रकार कौन-कौन से हैं?",
+
+options: [
+"सरल रेखीय, वर्तुल और आवर्ती गति",
+"केवल तेज और धीमी गति",
+"केवल ऊपर और नीचे की गति",
+"केवल विराम"
+],
+
+answer: 0
+}
+
+];
+
+
+/* =========================
+QUIZ LOGIC
+========================= */
+
+let currentQuestion = 0;
+
+let selectedAnswers = new Array(questions.length).fill(null);
+
+
+function loadQuestion() {
+
+const q = questions[currentQuestion];
+
+document.getElementById("progress").innerHTML =
+"प्रश्न " + (currentQuestion + 1) + " / " + questions.length;
+
+document.getElementById("question").innerHTML =
+(currentQuestion + 1) + ". " + q.question;
+
+
+const optionsContainer =
+document.getElementById("options");
+
+optionsContainer.innerHTML = "";
+
+
+q.options.forEach((option, index) => {
+
+const button = document.createElement("button");
+
+button.className = "option";
+
+button.innerHTML =
+String.fromCharCode(65 + index) + ". " + option;
+
+
+if (selectedAnswers[currentQuestion] === index) {
+
+button.classList.add("selected");
+
+}
+
+
+button.onclick = function() {
+
+selectedAnswers[currentQuestion] = index;
+
+loadQuestion();
+
+};
+
+
+optionsContainer.appendChild(button);
+
+});
+
+}
+
+
+function nextQuestion() {
+
+if (currentQuestion < questions.length - 1) {
+
+currentQuestion++;
+
+loadQuestion();
+
+} else {
+
+showResult();
+
+}
+
+}
+
+
+function previousQuestion() {
+
+if (currentQuestion > 0) {
+
+currentQuestion--;
+
+loadQuestion();
+
+}
+
+}
+
+
+function showResult() {
+
+let score = 0;
+
+questions.forEach((q, index) => {
+
+if (selectedAnswers[index] === q.answer) {
+
+score++;
+
+}
+
+});
+
+
+document.getElementById("quizBox").innerHTML = `
+
+<div class="result">
+
+<h2>🎉 Quiz Complete!</h2>
+
+<p class="score">
+
+आपका Score: ${score} / ${questions.length}
+
+</p>
+
+<p>
+
+आपने ${questions.length} प्रश्नों में से ${score} सही उत्तर दिए।
+
+</p>
+
+<button class="btn" onclick="restartQuiz()">
+
+🔄 फिर से Quiz दें
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function restartQuiz() {
+
+currentQuestion = 0;
+
+selectedAnswers = new Array(questions.length).fill(null);
+
+location.reload();
+
+}
+
+
+loadQuestion();
+
+</script>
+
+
+</body>
+
+</html>
