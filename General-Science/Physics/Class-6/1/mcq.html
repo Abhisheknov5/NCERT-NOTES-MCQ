@@ -87,7 +87,9 @@ function startSection(i){
  const sel=document.getElementById("questionCount");sel.innerHTML="";
  [5,10,20,list.length].forEach(n=>{if(n<=list.length&&!Array.from(sel.options).some(o=>Number(o.value)===n)){
   const o=document.createElement("option");o.value=n;o.textContent=n===list.length?`All ${n} Questions`:`${n} Questions`;sel.appendChild(o);
- }});window.scrollTo(0,0);
+ }});
+ sel.value=String(list.length);
+ window.scrollTo(0,0);
 }
 function startPractice(){
  const list=questions.slice(selectedSection.start-1,selectedSection.end).map((q,i)=>({...q,_id:selectedSection.start+i}));
