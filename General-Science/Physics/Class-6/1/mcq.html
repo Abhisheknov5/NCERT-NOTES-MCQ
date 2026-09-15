@@ -11,7 +11,9 @@
 button:disabled{opacity:.5;cursor:not-allowed}.home{padding:28px}.home h1{font-size:32px;margin-bottom:6px}.sub{color:#536579;font-size:18px}
 .section{border:1px solid #d4dae2;border-radius:12px;padding:17px 20px;margin:12px 0;cursor:pointer;background:#fafbfc}
 .section:hover{background:#f5f8fc}.section-title{font-size:20px;font-weight:700;color:#111}.section-count{color:#536579}
-.setup{padding:28px}.back{display:inline-block;color:#2563eb;text-decoration:none;font-weight:700;margin-bottom:18px}
+.setup{padding:28px}
+.question-select-row{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.question-select-row label{font-size:18px;white-space:nowrap}.back{display:inline-block;color:#2563eb;text-decoration:none;font-weight:700;margin-bottom:18px}
 select{padding:10px 14px;border:1px solid #ccc;border-radius:8px;margin-left:8px}
 .next{background:#16a34a;color:#fff}.prev{background:#6b7280;color:#fff}.submit{background:#2563eb;color:#fff}
 .quiz-header{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
@@ -21,8 +23,8 @@ select{padding:10px 14px;border:1px solid #ccc;border-radius:8px;margin-left:8px
 .option:hover{border-color:#2563eb;background:#eff6ff}.option.selected{border-color:#2563eb;background:#dbeafe}
 .option.correct{border-color:#16a34a;background:#dcfce7}.option.wrong{border-color:#dc2626;background:#fee2e2}
 .feedback{min-height:28px;font-weight:700;margin-top:12px}.bottom{padding:18px 24px;display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px}
-.palette{padding:20px 24px}.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:8px}
-.pal{background:#fff;border:1px solid #d4dae2;padding:9px 4px}.pal.active{outline:3px solid #2563eb}.pal.done{background:#dbeafe}
+.palette{padding:20px 24px}.pal-grid{display:flex;flex-wrap:wrap;gap:8px}
+.pal{width:58px;height:52px;padding:0;border:0;border-radius:10px;background:#f1f1f1;font-size:18px}.pal.active{outline:3px solid #2563eb;background:#fff}.pal.done{background:#dbeafe}
 .result{padding:32px;text-align:center}.stat{font-size:18px;line-height:2}.review-note{color:#536579;margin-bottom:15px}
 @media(max-width:650px){.container{padding:14px}.home h1{font-size:26px}.question{font-size:19px}.quiz-header,.bottom{flex-direction:column;align-items:stretch}.bottom button{width:100%;margin:4px 0}}
 </style>
@@ -38,7 +40,10 @@ select{padding:10px 14px;border:1px solid #ccc;border-radius:8px;margin-left:8px
 <div id="setup" class="card setup hidden">
 <a href="#" class="back" onclick="goHome();return false;">← Back to Sections</a>
 <h2 id="setupTitle"></h2><p class="sub" id="setupInfo"></p>
-<label><b>Questions:</b></label><select id="questionCount"></select><br><br>
+<div class="question-select-row">
+    <label><b>Questions:</b></label>
+    <select id="questionCount"></select>
+  </div><br><br>
 <button class="next" onclick="startPractice()">🚀 Start Practice</button>
 </div>
 
