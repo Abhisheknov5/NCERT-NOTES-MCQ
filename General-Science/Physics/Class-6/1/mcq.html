@@ -22,7 +22,7 @@ select{padding:10px 14px;border:1px solid #ccc;border-radius:8px;margin-left:8px
 .option{display:block;width:100%;text-align:left;margin:10px 0;padding:14px 16px;border:2px solid #e1e5ea;background:#fff;border-radius:10px}
 .option:hover{border-color:#2563eb;background:#eff6ff}.option.selected{border-color:#2563eb;background:#dbeafe}
 .option.correct{border-color:#16a34a;background:#dcfce7}.option.wrong{border-color:#dc2626;background:#fee2e2}
-.feedback{min-height:28px;font-weight:700;margin-top:12px}.bottom{padding:18px 24px;display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px}
+.explanation{margin-top:14px;padding:16px 18px;border-left:5px solid #2563eb;border-radius:10px;background:#eff6ff;color:#172b4d;font-size:16px;line-height:1.6}.explanation-title{font-weight:700;font-size:18px;margin-bottom:6px}.feedback{min-height:28px;font-weight:700;margin-top:12px}.bottom{padding:18px 24px;display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px}
 .palette{padding:20px 24px}.pal-grid{display:flex;flex-wrap:wrap;gap:8px}
 .pal{width:58px;height:52px;padding:0;border:0;border-radius:10px;background:#f1f1f1;font-size:18px}.pal.active{outline:3px solid #2563eb;background:#fff}.pal.done{background:#dbeafe}
 .result{padding:32px;text-align:center}.stat{font-size:18px;line-height:2}.review-note{color:#536579;margin-bottom:15px}
@@ -52,7 +52,7 @@ select{padding:10px 14px;border:1px solid #ccc;border-radius:8px;margin-left:8px
 <strong id="sectionName"></strong><div id="counter"></div><div id="attempted"></div>
 </div>
 <div class="card question-card">
-<div class="question" id="question"></div><div id="options"></div><div class="feedback" id="feedback"></div>
+<div class="question" id="question"></div><div id="options"></div><div class="feedback" id="feedback"></div><div class="explanation hidden" id="explanation"></div>
 </div>
 <div class="card bottom">
 <div><button class="prev" id="prevBtn">← Previous</button> <button class="submit" id="checkBtn">Check Answer</button> <button class="next" id="nextBtn">Next →</button></div>
@@ -96,6 +96,22 @@ function startSection(i){
  sel.value=String(list.length);
  window.scrollTo(0,0);
 }
+
+const sectionExplanations={
+ A:"इस भाग के प्रश्न परिवहन, मापन की आवश्यकता, गैर-मानक मात्रकों की समस्याएँ तथा मानक मात्रकों के विकास पर आधारित हैं।",
+ B:"मानक मापन, उपयुक्त उपकरण, पैमाने की सही स्थिति, टूटे शून्यांक और आँख की सही स्थिति से संबंधित निर्देश अध्याय में दिए गए हैं। वक्र रेखा के लिए धागे और गति के विभिन्न प्रकारों का वर्णन भी अध्याय में दिया गया है।",
+ C:"मापन की मानक इकाइयों, SI प्रणाली, सही मापन विधि तथा गति के प्रकारों की जानकारी अध्याय के पृष्ठ 77–84 में दी गई है।",
+ D:"अध्याय में पुराने गैर-मानक मात्रकों की समस्याओं से लेकर S.I. मात्रकों, सही मापन विधियों और गति के प्रकारों तक क्रमबद्ध रूप से चर्चा की गई है।",
+ E:"शरीर के अंगों जैसे पैर और बालिश्त की लंबाई अलग-अलग व्यक्तियों में अलग हो सकती है। वस्तु के अनुसार उपयुक्त मापन यंत्र चुनना चाहिए। अध्याय में 1 km = 1000 m, 1 m = 100 cm तथा 1 cm = 10 mm दिए गए हैं। वक्र रेखा की लंबाई के लिए धागे का उपयोग किया जाता है।"
+};
+function getSectionKey(){
+ if(selectedSection.start===1)return "A";
+ if(selectedSection.start===36)return "B";
+ if(selectedSection.start===71)return "C";
+ if(selectedSection.start===106)return "D";
+ return "E";
+}
+
 function startPractice(){
  const list=questions.slice(selectedSection.start-1,selectedSection.end).map((q,i)=>({...q,_id:selectedSection.start+i}));
  const count=Number(document.getElementById("questionCount").value);quiz=list.slice(0,count);
@@ -131,17 +147,18 @@ function render(){
  document.getElementById("nextBtn").disabled=currentIndex===quiz.length-1;
  document.getElementById("checkBtn").disabled=reviewMode||!!checked[q._id]||answers[q._id]===undefined;
  document.getElementById("submitBtn").style.display=reviewMode?"none":"inline-block";
+ const exp=document.getElementById("explanation");if(exp){exp.classList.add("hidden");exp.innerHTML="";}
 }
 function renderPalette(){
  const p=document.getElementById("palette");p.innerHTML="<h3>Question Palette</h3>";
  const g=document.createElement("div");g.className="pal-grid";
- quiz.forEach((q,i)=>{const b=document.createElement("button");b.className="pal";b.type="button";b.textContent=i+1;
+ quiz.forEach((q,i)=>{const b=document.createElement("button");b.className="pal";b.type="button";b.textContent=q._id;
  if(i===currentIndex)b.classList.add("active");if(answers[q._id]!==undefined)b.classList.add("done");
  b.onclick=()=>{currentIndex=i;render();window.scrollTo(0,0)};g.appendChild(b);});p.appendChild(g);
 }
 document.getElementById("prevBtn").onclick=()=>{if(currentIndex>0){currentIndex--;render();window.scrollTo(0,0)}};
 document.getElementById("nextBtn").onclick=()=>{if(currentIndex<quiz.length-1){currentIndex++;render();window.scrollTo(0,0)}};
-document.getElementById("checkBtn").onclick=()=>{const q=quiz[currentIndex];if(answers[q._id]===undefined)return;checked[q._id]=true;render()};
+document.getElementById("checkBtn").onclick=()=>{const q=quiz[currentIndex];if(answers[q._id]===undefined)return;checked[q._id]=true;render();const q=quiz[currentIndex];const exp=document.getElementById("explanation");exp.innerHTML='<div class="explanation-title">💡 Explanation</div>'+sectionExplanations[getSectionKey()];exp.classList.remove("hidden");};
 document.getElementById("submitBtn").onclick=()=>{if(confirm("क्या आप अपना test submit करना चाहते हैं?"))showResult()};
 function showResult(){
  let correct=0,attempted=Object.keys(answers).length;quiz.forEach(q=>{if(answers[q._id]===q.answer)correct++});
