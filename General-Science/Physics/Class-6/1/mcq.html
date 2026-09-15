@@ -354,6 +354,31 @@ document.getElementById("reviewBtn").onclick=()=>{
  window.scrollTo(0,0);
 };
 
+// Keyboard shortcuts for Review Answers
+document.addEventListener("keydown", (e)=>{
+ if(!reviewMode) return;
+
+ // Don't trigger shortcuts while typing in an input/textarea/select
+ const tag = document.activeElement?.tagName;
+ if(tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+ const key = e.key.toLowerCase();
+
+ if(key === "n" && currentIndex < quiz.length - 1){
+   e.preventDefault();
+   currentIndex++;
+   render();
+   window.scrollTo(0,0);
+ }
+
+ if(key === "p" && currentIndex > 0){
+   e.preventDefault();
+   currentIndex--;
+   render();
+   window.scrollTo(0,0);
+ }
+});
+
 document.getElementById("homeBtn").onclick=goHome;
 
 renderSections();
